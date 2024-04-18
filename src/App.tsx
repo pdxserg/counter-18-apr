@@ -6,15 +6,9 @@ function App() {
 
 	let [a, setA] = useState(0)
 
-	function onClickHandler() {
-		a = a + 1
-		setA(a)
-	}
+	function onClickHandler() {a = a + 1; setA(a)}
+	function onClickHandlerZero() {a = 0; setA(a)}
 
-	function onClickHandlerZero() {
-		a = 0
-		setA(a)
-	}
 
 	return (
 
@@ -28,6 +22,7 @@ function App() {
 					<button disabled={a === 0} onClick={onClickHandlerZero}>reset</button>
 				</div>
 			</div>
+
 
 
 		</div>

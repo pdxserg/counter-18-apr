@@ -1,45 +1,43 @@
 
 .App-header {
 
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #3f3d3d;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #3f3d3d;
 
 }
-.c{
-  border: 1px solid;
-  padding: 10px 10px;
-  border-radius: 5px;
-  border-color: #1df8dd;
-}
-.a{
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: #1df8dd;
-}
-.b{
 
-  margin-top: 5px;
-max-width: 400px;
-  border: 1px solid;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border-color: #1df8dd;
+.c {
+    border: 1px solid #1df8dd;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+.a {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #1df8dd;
+}
+
+.b {
+    margin-top: 10px;
+    max-width: 400px;
+    border: 1px solid #1df8dd;
+    padding: 5px 10px;
+    border-radius: 5px;
 
 }
-button{
 
-margin-left: 5px;
-  background-color: #1df8dd;
-  border-radius: 5px;
-  border: none;
-}
-h2{
-  color: #026002;
+button {
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: #1df8dd;
+    border-radius: 5px;
+    border: none;
 }
