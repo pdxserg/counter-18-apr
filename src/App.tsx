@@ -6,13 +6,20 @@ function App() {
 
 	let [a, setA] = useState(0)
 
-	function onClickHandler() {a = a + 1; setA(a)}
-	function onClickHandlerZero() {a = 0; setA(a)}
+	function onClickHandler() {
+		a = a + 1;
+		setA(a)
+	}
+
+	function onClickHandlerZero() {
+		a = 0;
+		setA(a)
+	}
 
 	const style1 = {
 		border: "1px solid #1df8dd",
-	padding: "10px 10px",
-	borderRadius: "5px"
+		padding: "10px 10px",
+		borderRadius: "5px"
 	}
 	const style2 = {
 		height: "60px",
@@ -25,11 +32,14 @@ function App() {
 	}
 	const style3 = {
 		marginTop: "10px",
-	maxWidth: "400px",
-	border: "1px solid #1df8dd",
-	padding: "5px 10px",
-	borderRadius: "5px"
+		maxWidth: "400px",
+		border: "1px solid #1df8dd",
+		padding: "5px 10px",
+		borderRadius: "5px"
 	}
+	const y = false
+	const z = true
+
 
 
 	return (
@@ -37,14 +47,13 @@ function App() {
 		<div className="App-header">
 			<div style={style1}>
 				<div style={style2}>
-					<h2 >{a}</h2>
+					<h2>{a}</h2>
 				</div>
 				<div style={style3}>
 					<button disabled={a === 5} onClick={onClickHandler}>inc</button>
 					<button disabled={a === 0} onClick={onClickHandlerZero}>reset</button>
 				</div>
 			</div>
-
 
 
 		</div>
