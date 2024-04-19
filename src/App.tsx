@@ -11,7 +11,7 @@ function App() {
 		setA(a)
 	}
 
-	function onClickHandlerZero() {
+	function onClickResetHandler() {
 		a = 0;
 		setA(a)
 	}
@@ -50,7 +50,7 @@ function App() {
 				</div>
 				<div style={style3}>
 					<button disabled={a === 5} onClick={onClickHandler}>inc</button>
-					<button disabled={a === 0} onClick={onClickHandlerZero}>reset</button>
+					<button disabled={a === 0} onClick={onClickResetHandler}>reset</button>
 				</div>
 			</div>
 
