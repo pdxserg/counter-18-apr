@@ -11,30 +11,31 @@
 
 }
 
-/*.c {*/
-/*    border: 1px solid #1df8dd;*/
-/*    padding: 10px 10px;*/
-/*    border-radius: 5px;*/
-/*}*/
+.c {
+    width: 120px;
+    border: 1px solid #1df8dd;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
 
-/*.a {*/
-/*    height: 60px;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    border-radius: 5px;*/
-/*    background-color: #1df8dd;*/
-/*    !*color: a === 5 ? "red": "black";*!*/
-/*}*/
+.a {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #1df8dd;
+    /*color: a === 5 ? "red": "black";*/
+}
 
-/*.b {*/
-/*    margin-top: 10px;*/
-/*    max-width: 400px;*/
-/*    border: 1px solid #1df8dd;*/
-/*    padding: 5px 10px;*/
-/*    border-radius: 5px;*/
+.b {
+    margin-top: 10px;
+    max-width: 400px;
+    border: 1px solid #1df8dd;
+    padding: 5px 10px;
+    border-radius: 5px;
 
-/*}*/
+}
 
 button {
     margin-left: 5px;
