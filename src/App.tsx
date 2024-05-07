@@ -1,24 +1,37 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter";
 import {SetCounter} from "./components/SetCounter";
 
 
 
-const min_value = 0
-const max_value = 5
+
 function App() {
+	const [numMax, setNumMax] = useState<number>(5)
+	const [numMin, setNumMin] = useState<number>(0)
+
+	const onChangeHandlerMax = (el: ChangeEvent<HTMLInputElement>) => {
+		setNumMax(Number(el.currentTarget.value))
+	}
+	const onChangeHandlerMin = (el: ChangeEvent<HTMLInputElement>) => {
+		setNumMin(Number(el.currentTarget.value))
+	}
 
 
-return(
-	<div className="App">
-		<SetCounter/>
-		<Counter
-			valueMin={min_value}
-			valueMax={max_value}
-		/>
-	</div>
-)
+	return (
+		<div className="App">
+			<SetCounter
+				onChangeHandlerMax={onChangeHandlerMax}
+				onChangeHandlerMin={onChangeHandlerMin}
+				numMax={numMax}
+				numMin={numMin}
+			/>
+			<Counter
+				valueMin={numMin}
+				valueMax={numMax}
+			/>
+		</div>
+	)
 }
 
 export default App;
