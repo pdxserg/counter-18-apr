@@ -5,12 +5,18 @@ import {SetCounter} from "./components/SetCounter";
 
 
 
-
+const min_value = 0
+const max_value = 5
 function App() {
+
+
 return(
 	<div className="App">
 		<SetCounter/>
-		<Counter/>
+		<Counter
+			valueMin={min_value}
+			valueMax={max_value}
+		/>
 	</div>
 )
 }
