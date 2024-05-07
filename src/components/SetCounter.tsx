@@ -1,28 +1,24 @@
 import React, {useState} from "react";
-import {max_value, min_value} from "../App";
 
-export function Counter() {
+export const min_value = 0
+export const max_value = 5
 
-	let [counter, setCounter] = useState(min_value)
-
-	function onClickHandler() {
-		setCounter(counter + 1)
-	}
-
-	function onClickResetHandler() {
-		setCounter(min_value)
-	}
+export function SetCounter() {
+const [num,setNum] = useState(0)
 
 	return (
 
 		<div >
 			<div className={'style1'}>
-				<div className={`style2  ${counter === max_value ? 'styleRed' : ''}`}>
-					<h2>{counter}</h2>
+				<div className={`style2-SetCounter`}>
+
+					<input type="number" value={num} />
+					<input type="number" value={num}/>
+
 				</div>
 				<div className={'style3'}>
-					<button disabled={counter === max_value} onClick={onClickHandler}>inc</button>
-					<button disabled={counter === min_value} onClick={onClickResetHandler}>reset</button>
+					<button >set</button>
+
 				</div>
 			</div>
 

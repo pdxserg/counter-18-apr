@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import {max_value, min_value} from "../App";
+import {max_value, min_value} from "./SetCounter";
+
 
 export function Counter() {
 
