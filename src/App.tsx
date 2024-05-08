@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter";
 import {SetCounter} from "./components/SetCounter";
+import {json} from "node:stream/consumers";
 
 
 
@@ -17,7 +18,8 @@ function App() {
 		setNumMin(Number(el.currentTarget.value))
 	}
 const lokalStorageHandler= ()=>{
-
+localStorage.setItem('max', JSON.stringify(numMax) )
+localStorage.setItem('min', JSON.stringify(numMin) )
 
 }
 
