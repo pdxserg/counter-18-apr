@@ -8,6 +8,7 @@ type SetCounterPropsType = {
 	onChangeHandlerMin: (el: ChangeEvent<HTMLInputElement>) => void
 	numMax: number
 	numMin: number
+	lokalStorageHandler:()=>void
 }
 
 export function SetCounter(props: SetCounterPropsType) {
@@ -27,13 +28,25 @@ export function SetCounter(props: SetCounterPropsType) {
 		<div>
 			<div className={'style1'}>
 				<div className={`style2-SetCounter`}>
+					<label htmlFor="max">max value</label>
 
-					<input type="number" value={props.numMax} onChange={props.onChangeHandlerMax}/>
-					<input type="number" value={props.numMin} onChange={props.onChangeHandlerMin}/>
+					<input
+						id="max"
+						className={props.numMax < 0 || props.numMax === props.numMin ? `red` : ''}
+						type="number" value={props.numMax} onChange={props.onChangeHandlerMax}
+
+					/><br/>
+					<label htmlFor="min">min value </label>
+					<input
+						id="min"
+						className={props.numMin < 0 || props.numMax === props.numMin ? `red` : ''}
+						type="number" value={props.numMin} onChange={props.onChangeHandlerMin}
+					/>
 
 				</div>
 				<div className={'style3'}>
-					<button>set</button>
+					<button disabled={props.numMin < 0 || props.numMax === props.numMin}
+					onClick={props.lokalStorageHandler}>set</button>
 
 				</div>
 			</div>

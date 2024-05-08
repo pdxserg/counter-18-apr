@@ -23,7 +23,12 @@ export function Counter(props:CounterPropsType) {
 		<div>
 			<div className={'style1'}>
 				<div className={`style2  ${counter === props.valueMax ? 'styleRed' : ''}`}>
-					<h2>{counter}</h2>
+					{props.valueMin < 0 || props.valueMax < 0 || props.valueMin === props.valueMax
+						? <p className={`red-text`}>Incorect value</p>
+						: <h2>{counter}</h2>
+					}
+
+
 				</div>
 				<div className={'style3'}>
 					<button disabled={counter === props.valueMax} onClick={onClickHandler}>inc</button>

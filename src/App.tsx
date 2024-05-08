@@ -16,7 +16,10 @@ function App() {
 	const onChangeHandlerMin = (el: ChangeEvent<HTMLInputElement>) => {
 		setNumMin(Number(el.currentTarget.value))
 	}
+const lokalStorageHandler= ()=>{
 
+
+}
 
 	return (
 		<div className="App">
@@ -25,6 +28,7 @@ function App() {
 				onChangeHandlerMin={onChangeHandlerMin}
 				numMax={numMax}
 				numMin={numMin}
+				lokalStorageHandler={lokalStorageHandler}
 			/>
 			<Counter
 				valueMin={numMin}

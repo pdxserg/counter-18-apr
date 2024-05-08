@@ -1,4 +1,7 @@
+* {
 
+    box-sizing: border-box;
+}
 .App {
 
     min-height: 50vh;
@@ -6,14 +9,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    background-color: #150f0f;
+    background-color: #b6afaf;
 
 
 
 }
 
 .style1 {
-    width: 120px;
+    width: 230px;
     border: 1px solid #1df8dd;
     padding: 10px 10px;
     border-radius: 5px;
@@ -44,6 +47,8 @@
 }
 
 .style3 {
+    display: flex;
+    justify-content: center;
     margin-top: 10px;
     max-width: 400px;
     border: 1px solid #1df8dd;
@@ -58,4 +63,19 @@ button {
     background-color: #1df8dd;
     border-radius: 5px;
     border: none;
+}
+input {
+    outline: none;
+    width: 100px;
+    margin-left: 20px;
+
+    border-radius: 5px;
+
+}
+.red {
+    background-color: #fd9292;
+    border:2px solid red;
+}
+.red-text{
+    color: red;
 }
