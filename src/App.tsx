@@ -3,41 +3,44 @@ import './App.css'
 
 export const App = () => {
 
-	const [counter, setCounter] = useState(0)
+	const [value, setValue] = useState(0)
+
+	useEffect(() => {
+		let valueAsString = localStorage.getItem('counterValue')
+		console.log('valueAsSring :',valueAsString)
+		if(valueAsString){
+			let newValue = JSON.parse(valueAsString)
+			setValue(newValue)
+			console.log(newValue)
+		}
+	}, []);
 
 
 	useEffect(()=>{
-			let valueAssString = localStorage.getItem('counterValue',)
-			if (valueAssString) {
-				let newValue = JSON.parse(valueAssString)
-				setCounter(newValue)
-			}
-	},[])
+		localStorage.setItem('counterValue', JSON.stringify(value))
+	},[value])
 
-	useEffect(()=>{
-		localStorage.setItem('counterValue', JSON.stringify(counter))
-	},[counter])
 
 	// const setLocalHandler = () => {
 	// 	localStorage.setItem('counterValue', JSON.stringify(counter))
 	// }
 
 	const incHandler = () => {
-		setCounter(counter + 1)
+		setValue(value + 1)
 	}
 
 	// const getLocalHandler = () => {
 	// 	let valueAssString = localStorage.getItem('counterValue',)
 	// 	if (valueAssString) {
 	// 		let newValue = JSON.parse(valueAssString)
-	// 		setCounter(newValue)
+	// 		setValue(newValue)
 	// 	}
 	// }
 
 	return (
 		<div className="App">
 			<div>
-				<h1> {counter}  </h1>
+				<h1> {value}  </h1>
 
 				<button onClick={incHandler}>inc</button>
 				{/*<button onClick={setLocalHandler}>setLocal</button>*/}
