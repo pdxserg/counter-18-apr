@@ -27,7 +27,7 @@ function App() {
 	}
 	const onChangeHandlerMin = (el: ChangeEvent<HTMLInputElement>) => {
 		const valueMin = Number(el.currentTarget.value)
-		//! const valueMin = +el.currentTarget.value
+		//!! const valueMin = +el.currentTarget.value
 		setNumMin(valueMin)
 	}
 	const lokalStorageHandler = () => {
