@@ -1,59 +1,51 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
-import './App.css';
-import {Counter} from "./components/Counter";
-import {SetCounter} from "./components/SetCounter";
+import React, {useEffect, useState} from 'react';
+import './App.css'
 
+export const App = () => {
 
-
-function App() {
-	const [numMax, setNumMax] = useState<number>(5)
-	const [numMin, setNumMin] = useState<number>(0)
 	const [counter, setCounter] = useState(0)
 
-	useEffect(() => {
-		let valueAsStringMax = localStorage.getItem('max')
-		if (valueAsStringMax){
-			setNumMax(JSON.parse(valueAsStringMax))
-		}
-		let valueAsStringMin = localStorage.getItem('min')
-		if (valueAsStringMin){
-			setNumMin(JSON.parse(valueAsStringMin))
-		}
-	}, []);
 
+	useEffect(()=>{
+			let valueAssString = localStorage.getItem('counterValue',)
+			if (valueAssString) {
+				let newValue = JSON.parse(valueAssString)
+				setCounter(newValue)
+			}
+	},[])
 
-	const onChangeHandlerMax = (el: ChangeEvent<HTMLInputElement>) => {
-		setNumMax(Number(el.currentTarget.value))
-	}
-	const onChangeHandlerMin = (el: ChangeEvent<HTMLInputElement>) => {
-		const valueMin = Number(el.currentTarget.value)
-		//!! const valueMin = +el.currentTarget.value
-		setNumMin(valueMin)
-	}
-	const lokalStorageHandler = () => {
-		localStorage.setItem('max', JSON.stringify(numMax))
-		localStorage.setItem('min', JSON.stringify(numMin))
-		setCounter(numMin)
+	useEffect(()=>{
+		localStorage.setItem('counterValue', JSON.stringify(counter))
+	},[counter])
 
+	// const setLocalHandler = () => {
+	// 	localStorage.setItem('counterValue', JSON.stringify(counter))
+	// }
+
+	const incHandler = () => {
+		setCounter(counter + 1)
 	}
+
+	// const getLocalHandler = () => {
+	// 	let valueAssString = localStorage.getItem('counterValue',)
+	// 	if (valueAssString) {
+	// 		let newValue = JSON.parse(valueAssString)
+	// 		setCounter(newValue)
+	// 	}
+	// }
 
 	return (
 		<div className="App">
-			<SetCounter
-				onChangeHandlerMax={onChangeHandlerMax}
-				onChangeHandlerMin={onChangeHandlerMin}
-				numMax={numMax}
-				numMin={numMin}
-				lokalStorageHandler={lokalStorageHandler}
-			/>
-			<Counter
-				setCounter={setCounter}
-				counter={counter}
-				valueMin={numMin}
-				valueMax={numMax}
-			/>
-		</div>
-	)
-}
+			<div>
+				<h1> {counter}  </h1>
 
-export default App;
+				<button onClick={incHandler}>inc</button>
+				{/*<button onClick={setLocalHandler}>setLocal</button>*/}
+				{/*<button onClick={getLocalHandler}>getLocal</button>*/}
+			</div>
+
+
+		</div>
+	);
+};
+
