@@ -45,7 +45,7 @@ export function SetCounter(props: SetCounterPropsType) {
 
 				</div>
 				<div className={'style3'}>
-					<button disabled={props.numMin < 0 || props.numMax === props.numMin}
+					<button disabled={props.numMax < 0 || props.numMin < 0 || props.numMax === props.numMin}
 					onClick={props.lokalStorageHandler}>set</button>
 
 				</div>
