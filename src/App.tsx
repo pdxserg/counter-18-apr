@@ -6,8 +6,30 @@ import {Setting} from "./components/Setting";
 export const App = () => {
 
 	const [value, setValue] = useState(0)
-	const [maxValue, setMaxValue] = useState(5)
+	const [maxValue, setMaxValue] = useState( 0)
 	const [minValue, setMinValue] = useState(0)
+
+	useEffect(() => {
+		let maxValue = localStorage.getItem("maxValue")
+		let minValue = localStorage.getItem("minValue")
+		if (maxValue){
+			let newMaxVal= JSON.parse(maxValue)
+			setMaxValue(newMaxVal)
+		}
+		if (minValue){
+			let newMinVal= JSON.parse(minValue)
+			setMinValue(newMinVal)
+		}
+
+	}, []);
+	useEffect(() => {
+		localStorage.setItem("maxValue", JSON.stringify(maxValue))
+		// localStorage.setItem("minValue", JSON.stringify(minValue))
+	}, [maxValue]);
+	useEffect(() => {
+		localStorage.setItem("minValue", JSON.stringify(minValue))
+	}, [minValue]);
+
 
 	// useEffect(() => {
 	// 	let valueAsString = localStorage.getItem('counterValue')
@@ -43,9 +65,9 @@ export const App = () => {
 		setMinValue(+e.currentTarget.value)
 	}
 	const setHandler=()=>{
-		localStorage.setItem("maxValue", JSON.stringify(maxValue))
-		localStorage.setItem("minValue", JSON.stringify(minValue))
-		// setValue(minValue)
+
+
+		  setValue(minValue)
 	}
 
 
