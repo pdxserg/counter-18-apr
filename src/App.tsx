@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css'
 import {Counter} from "./Counter";
 import {Setting} from "./components/Setting";
@@ -6,6 +6,8 @@ import {Setting} from "./components/Setting";
 export const App = () => {
 
 	const [value, setValue] = useState(0)
+	const [maxValue, setMaxValue] = useState(0)
+	const [minValue, setMinValue] = useState(0)
 
 	// useEffect(() => {
 	// 	let valueAsString = localStorage.getItem('counterValue')
@@ -34,6 +36,13 @@ export const App = () => {
 		setValue(0)
 	}
 
+	const maxHendler = (e: ChangeEvent<HTMLInputElement>) => {
+		setMaxValue(+e.currentTarget.value)
+	}
+	const minHendler = (e: ChangeEvent<HTMLInputElement>) => {
+		setMinValue(+e.currentTarget.value)
+	}
+
 	// const getLocalHandler = () => {
 	// 	let valueAssString = localStorage.getItem('counterValue',)
 	// 	if (valueAssString) {
@@ -48,7 +57,13 @@ export const App = () => {
 			         incHandler={incHandler}
 			         resetHandler={resetHandler}
 			/>
-			<Setting/>
+			<Setting
+				maxHendler={maxHendler}
+				minHendler={minHendler}
+				maxValue={maxValue}
+				minValue={minValue}
+
+			/>
 
 
 
