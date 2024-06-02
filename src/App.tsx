@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css'
 import {Counter} from "./Counter";
+import {Setting} from "./components/Setting";
 
 export const App = () => {
 
@@ -47,6 +48,7 @@ export const App = () => {
 			         incHandler={incHandler}
 			         resetHandler={resetHandler}
 			/>
+			<Setting/>
 
 
 
