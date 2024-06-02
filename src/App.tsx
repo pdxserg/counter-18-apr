@@ -81,12 +81,7 @@ export const App = () => {
 
 	return (
 		<div className="App">
-			<Counter value={value}
-			         incHandler={incHandler}
-			         resetHandler={resetHandler}
-			         maxValue={maxValue}
-			         minValue={minValue}
-			/>
+
 			<Setting
 				maxHendler={maxHendler}
 				minHendler={minHendler}
@@ -96,7 +91,12 @@ export const App = () => {
 
 			/>
 
-
+			<Counter value={value}
+			         incHandler={incHandler}
+			         resetHandler={resetHandler}
+			         maxValue={maxValue}
+			         minValue={minValue}
+			/>
 
 		</div>
 	);

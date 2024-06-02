@@ -15,20 +15,28 @@ type CounterPoropsType = {
 export const Counter = ({value, incHandler, resetHandler,minValue ,maxValue }: CounterPoropsType) => {
 	return (
 		<div>
-			<div>
-				<h1 className={value === maxValue ? "styleRed" : ""}>
-					{value}
-				</h1>
+			<div className="style1">
+				<div >
+					<h1 className={value === maxValue ? "styleRed" : ""}>
+						{value}
+					</h1>
+				</div>
 
-				<button onClick={incHandler}
-				        disabled={value === maxValue}
-				>inc
-				</button>
-				<button onClick={resetHandler}
-				        disabled={value === 0}
+				<div className="button-container">
+					<button onClick={incHandler}
+					        disabled={value === maxValue}
+					        className="button"
+					>inc
 
-				>reset
-				</button>
+					</button>
+					<button onClick={resetHandler}
+					        disabled={value === 0}
+					        className="button"
+
+					>reset
+					</button>
+				</div>
+
 
 				{/*<button onClick={setLocalHandler}>setLocal</button>*/}
 				{/*<button onClick={getLocalHandler}>getLocal</button>*/}
