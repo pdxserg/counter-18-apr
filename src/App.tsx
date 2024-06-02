@@ -6,7 +6,7 @@ import {Setting} from "./components/Setting";
 export const App = () => {
 
 	const [value, setValue] = useState(0)
-	const [maxValue, setMaxValue] = useState(0)
+	const [maxValue, setMaxValue] = useState(5)
 	const [minValue, setMinValue] = useState(0)
 
 	// useEffect(() => {
@@ -33,7 +33,7 @@ export const App = () => {
 		setValue(value + 1)
 	}
 	const resetHandler=()=>{
-		setValue(0)
+		setValue(minValue)
 	}
 
 	const maxHendler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +42,12 @@ export const App = () => {
 	const minHendler = (e: ChangeEvent<HTMLInputElement>) => {
 		setMinValue(+e.currentTarget.value)
 	}
+	const setHandler=()=>{
+		localStorage.setItem("maxValue", JSON.stringify(maxValue))
+		localStorage.setItem("minValue", JSON.stringify(minValue))
+		// setValue(minValue)
+	}
+
 
 	// const getLocalHandler = () => {
 	// 	let valueAssString = localStorage.getItem('counterValue',)
@@ -56,12 +62,15 @@ export const App = () => {
 			<Counter value={value}
 			         incHandler={incHandler}
 			         resetHandler={resetHandler}
+			         maxValue={maxValue}
+			         minValue={minValue}
 			/>
 			<Setting
 				maxHendler={maxHendler}
 				minHendler={minHendler}
 				maxValue={maxValue}
 				minValue={minValue}
+				setHandler={setHandler}
 
 			/>
 

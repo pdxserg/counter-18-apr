@@ -1,29 +1,34 @@
 import React from "react";
 
 
-
-type CounterPoropsType={
+type CounterPoropsType = {
 	value: number
-	incHandler:()=>void
-	resetHandler:()=>void
+	incHandler: () => void
+	resetHandler: () => void
+	maxValue: number
+	minValue:number
 }
 
 // const disableHandler=()=>{
 // 	if(value)
 // }
-export const Counter = ({value, incHandler,resetHandler}:CounterPoropsType) => {
+export const Counter = ({value, incHandler, resetHandler,minValue ,maxValue }: CounterPoropsType) => {
 	return (
 		<div>
 			<div>
-				<h1 className={value === 5? "styleRed": ""}> {value}  </h1>
+				<h1 className={value === maxValue ? "styleRed" : ""}>
+					{value}
+				</h1>
 
 				<button onClick={incHandler}
-				        disabled={value === 5}
-				>inc</button>
+				        disabled={value === maxValue}
+				>inc
+				</button>
 				<button onClick={resetHandler}
 				        disabled={value === 0}
 
-				>reset</button>
+				>reset
+				</button>
 
 				{/*<button onClick={setLocalHandler}>setLocal</button>*/}
 				{/*<button onClick={getLocalHandler}>getLocal</button>*/}

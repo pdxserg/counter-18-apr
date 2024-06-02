@@ -5,8 +5,9 @@ type SettingPropsType = {
 	minValue: number
 	maxHendler:(e: ChangeEvent<HTMLInputElement>)=>void
 	minHendler:(e: ChangeEvent<HTMLInputElement>)=>void
+	setHandler:()=>void
 }
-export const Setting = ({minHendler,minValue ,maxValue ,maxHendler}: SettingPropsType) => {
+export const Setting = ({minHendler,minValue ,maxValue ,maxHendler,setHandler}: SettingPropsType) => {
 
 	return (
 		<div>
@@ -25,6 +26,7 @@ export const Setting = ({minHendler,minValue ,maxValue ,maxHendler}: SettingProp
 				/>
 			</div>
 			<button
+				onClick={setHandler}
 			disabled={maxValue === minValue || minValue < 0 || maxValue <0}
 			>set</button>
 		</div>
