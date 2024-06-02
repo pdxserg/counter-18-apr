@@ -1,104 +1,59 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import './App.css'
-import {Counter} from "./Counter";
-import {Setting} from "./components/Setting";
+import './App.css';
+import {Counter} from "./components/Counter";
+import {SetCounter} from "./components/SetCounter";
 
-export const App = () => {
 
-	const [value, setValue] = useState(0)
-	const [maxValue, setMaxValue] = useState( 0)
-	const [minValue, setMinValue] = useState(0)
+
+function App() {
+	const [numMax, setNumMax] = useState<number>(5)
+	const [numMin, setNumMin] = useState<number>(0)
+	const [counter, setCounter] = useState(0)
 
 	useEffect(() => {
-		let maxValue = localStorage.getItem("maxValue")
-		let minValue = localStorage.getItem("minValue")
-		if (maxValue){
-			let newMaxVal= JSON.parse(maxValue)
-			setMaxValue(newMaxVal)
+		let valueAsStringMax = localStorage.getItem('max')
+		if (valueAsStringMax){
+			setNumMax(JSON.parse(valueAsStringMax))
 		}
-		if (minValue){
-			let newMinVal= JSON.parse(minValue)
-			setMinValue(newMinVal)
+		let valueAsStringMin = localStorage.getItem('min')
+		if (valueAsStringMin){
+			setNumMin(JSON.parse(valueAsStringMin))
 		}
-
 	}, []);
-	useEffect(() => {
-		localStorage.setItem("maxValue", JSON.stringify(maxValue))
-		// localStorage.setItem("minValue", JSON.stringify(minValue))
-	}, [maxValue]);
-	useEffect(() => {
-		localStorage.setItem("minValue", JSON.stringify(minValue))
-	}, [minValue]);
 
 
-	// useEffect(() => {
-	// 	let valueAsString = localStorage.getItem('counterValue')
-	// 	console.log('valueAsSring :',valueAsString)
-	// 	if(valueAsString){
-	// 		let newValue = JSON.parse(valueAsString)
-	// 		setValue(newValue)
-	// 		console.log(newValue)
-	// 	}
-	// }, []);
-	//
-	//
-	// useEffect(()=>{
-	// 	localStorage.setItem('counterValue', JSON.stringify(value))
-	// },[value])
-
-
-	// const setLocalHandler = () => {
-	// 	localStorage.setItem('counterValue', JSON.stringify(counter))
-	// }
-
-	const incHandler = () => {
-		setValue(value + 1)
+	const onChangeHandlerMax = (el: ChangeEvent<HTMLInputElement>) => {
+		setNumMax(Number(el.currentTarget.value))
 	}
-	const resetHandler=()=>{
-		setValue(minValue)
+	const onChangeHandlerMin = (el: ChangeEvent<HTMLInputElement>) => {
+		const valueMin = Number(el.currentTarget.value)
+		//!! const valueMin = +el.currentTarget.value
+		setNumMin(valueMin)
 	}
+	const lokalStorageHandler = () => {
+		localStorage.setItem('max', JSON.stringify(numMax))
+		localStorage.setItem('min', JSON.stringify(numMin))
+		setCounter(numMin)
 
-	const maxHendler = (e: ChangeEvent<HTMLInputElement>) => {
-		setMaxValue(+e.currentTarget.value)
 	}
-	const minHendler = (e: ChangeEvent<HTMLInputElement>) => {
-		setMinValue(+e.currentTarget.value)
-	}
-	const setHandler=()=>{
-
-
-		  setValue(minValue)
-	}
-
-
-	// const getLocalHandler = () => {
-	// 	let valueAssString = localStorage.getItem('counterValue',)
-	// 	if (valueAssString) {
-	// 		let newValue = JSON.parse(valueAssString)
-	// 		setValue(newValue)
-	// 	}
-	// }
 
 	return (
 		<div className="App">
-
-			<Setting
-				maxHendler={maxHendler}
-				minHendler={minHendler}
-				maxValue={maxValue}
-				minValue={minValue}
-				setHandler={setHandler}
-
+			<SetCounter
+				onChangeHandlerMax={onChangeHandlerMax}
+				onChangeHandlerMin={onChangeHandlerMin}
+				numMax={numMax}
+				numMin={numMin}
+				lokalStorageHandler={lokalStorageHandler}
 			/>
-
-			<Counter value={value}
-			         incHandler={incHandler}
-			         resetHandler={resetHandler}
-			         maxValue={maxValue}
-			         minValue={minValue}
+			<Counter
+				setCounter={setCounter}
+				counter={counter}
+				valueMin={numMin}
+				valueMax={numMax}
 			/>
-
 		</div>
-	);
-};
+	)
+}
 
+export default App;

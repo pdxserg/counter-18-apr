@@ -4,7 +4,7 @@
 }
 .App {
 
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,14 +16,10 @@
 }
 
 .style1 {
-    min-height:60px;
     width: 230px;
     border: 1px solid #1df8dd;
     padding: 10px 10px;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 }
 
 .style2 {
@@ -47,10 +43,10 @@
 }
 .styleRed {
     color: red;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
-.button-container {
+.style3 {
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -61,7 +57,7 @@
 
 }
 
-.button {
+button {
 
 
 
@@ -80,7 +76,7 @@ button:active {
 
 }
 
-.input {
+input {
     outline: none;
     width: 100px;
     margin-left: 20px;
