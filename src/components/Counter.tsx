@@ -6,6 +6,7 @@ type CounterPropsType = {
 	valueMax: number
 	counter: number
 	setCounter: (el:number)=>void
+	componentHandler:()=>void
 }
 
 export function Counter(props:CounterPropsType) {
@@ -39,6 +40,7 @@ export function Counter(props:CounterPropsType) {
 				<div className={'style3'}>
 					<button disabled={props.counter === props.valueMax} onClick={onClickHandler}>inc</button>
 					<button disabled={props.counter === props.valueMin} onClick={onClickResetHandler}>reset</button>
+					<button  onClick={props.componentHandler}>setting</button>
 				</div>
 			</div>
 
