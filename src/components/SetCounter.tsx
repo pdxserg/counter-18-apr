@@ -26,7 +26,7 @@ export function SetCounter(props: SetCounterPropsType) {
 	return (
 
 		<div>
-			<div className={`style1`}>
+			<div className={`component`}>
 				<div className={`style2-SetCounter`}>
 					<label htmlFor="max">max value</label>
 
@@ -45,7 +45,7 @@ export function SetCounter(props: SetCounterPropsType) {
 					/>
 
 				</div>
-				<div className={'style3'}>
+				<div className={'styleButton'}>
 					<button disabled={props.numMax < 0 || props.numMin < 0 || props.numMax === props.numMin}
 					onClick={props.lokalStorageHandler}>set</button>
 

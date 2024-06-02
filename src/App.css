@@ -15,14 +15,14 @@
 
 }
 
-.style1 {
+.component {
     width: 230px;
     border: 1px solid #1df8dd;
     padding: 10px 10px;
     border-radius: 5px;
 }
 
-.style2 {
+.style2-counter {
     height: 60px;
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@
     font-size: 1.5rem;
 }
 
-.style3 {
+.styleButton {
     display: flex;
     justify-content: center;
     margin-top: 10px;
