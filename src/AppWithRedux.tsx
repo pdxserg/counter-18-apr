@@ -5,13 +5,22 @@ import {Setting} from "./components/Setting";
 import {incrementAC, setMinValueAC, setNewMinValueAC, valueReducer} from "./models/value-reducer";
 import {maxValueReducer, setMaxTargetAC} from "./models/maxValue-reducer";
 import {minValueReducer, setMinTargetAC} from "./models/minValue-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./store/store";
 
-export const AppWithReduser = () => {
-	const [value, dispatchValue] = useReducer(valueReducer,0)
-	const [maxValue, dispatchMaxValue] = useReducer(maxValueReducer, 0)
-	const [minValue, dispatchMinValue] = useReducer(minValueReducer, 0)
+export const AppWithRedux = () => {
+	// const [value, dispatchValue] = useReducer(valueReducer,0)
+	// const [maxValue, dispatchMaxValue] = useReducer(maxValueReducer, 0)
+	// const [minValue, dispatchMinValue] = useReducer(minValueReducer, 0)
 
 	const [showComponent, setShowComponent] = useState("A")
+
+	const value = useSelector<AppRootStateType, number>(state => state.value)
+	const maxValue = useSelector<AppRootStateType, number>(state => state.maxValue)
+	const minValue = useSelector<AppRootStateType, number>(state => state.minValue)
+
+	const dispatch = useDispatch()
+
 
 	//!!DONT REMOVE CODE BELOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//       DONT REMOVE CODE BELOW!
@@ -39,24 +48,24 @@ export const AppWithReduser = () => {
 
 
 	const incHandler = () => {
-		dispatchValue(incrementAC() )
+		dispatch(incrementAC() )
 	}
 
 	const resetHandler = () => {
-		dispatchValue(setMinValueAC(minValue))
+		dispatch(setMinValueAC(minValue))
 	}
 
 	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
 		const maxTarget = +e.currentTarget.value
-		dispatchMaxValue(setMaxTargetAC(maxTarget))
+		dispatch(setMaxTargetAC(maxTarget))
 	}
 	const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
 		const minTarget = +e.currentTarget.value
-		dispatchMinValue(setMinTargetAC(minTarget))
+		dispatch (setMinTargetAC(minTarget))
 	}
 
 	const setHandler = () => {
-		 dispatchValue(setNewMinValueAC(minValue))
+		dispatch(setNewMinValueAC(minValue))
 		setShowComponent("A")
 	}
 

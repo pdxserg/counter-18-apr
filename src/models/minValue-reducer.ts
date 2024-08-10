@@ -3,7 +3,8 @@
 
 type ActionsType=SetNewMinTargetACType
 type StateType = number
-export const minValueReducer = (state: StateType, action: ActionsType): StateType => {
+const initialState: StateType= 0
+export const minValueReducer = (state=initialState, action: ActionsType): StateType => {
 	switch (action.type) {
 		case 'SET-MIN-VALUE': {
 			let copyState = state

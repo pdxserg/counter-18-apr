@@ -3,7 +3,8 @@ import {Simulate} from "react-dom/test-utils";
 
 type ActionsType = IncrementACType | SetNewMinValueACType | SetMinValueACType
 type StateType = number
-export const valueReducer = (state: StateType, action: ActionsType): StateType => {
+const initialState: StateType= 0
+export const valueReducer = (state= initialState, action: ActionsType): StateType => {
 	switch (action.type) {
 		case "INCREASE": {
 			const copyState = state

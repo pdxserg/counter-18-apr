@@ -3,7 +3,8 @@
 
 type ActionsType=SetMaxTargetACType
 type StateType = number
-export const maxValueReducer = (state: StateType, action: ActionsType): StateType => {
+const initialState: StateType= 10
+export const maxValueReducer = (state=initialState, action: ActionsType): StateType => {
 	switch (action.type) {
 		case 'SET-MAX-VALUE': {
 			let copyState = state
