@@ -1,16 +1,16 @@
- 
 
 
-type ActionsType=ww
+
+type ActionsType=SetMaxValueACType
 type StateType = number
 export const maxValueReducer = (state: StateType, action: ActionsType): StateType => {
 	switch (action.type) {
-		case "WW": {
-			const copyState = state
-
+		case 'SET-MAX-VALUE': {
+			let copyState = state
+			copyState = action.maxTarget
 			return copyState
 		}
-
+		
 		default: {
 			return state
 		}
@@ -18,11 +18,13 @@ export const maxValueReducer = (state: StateType, action: ActionsType): StateTyp
 
 }
 
-type ww = {
-	type: 'WW'
+type SetMaxValueACType = {
+	type: 'SET-MAX-VALUE'
+	maxTarget:number
 }
-export const www = ():ww  => {
+export const setMaxValueAC = (maxTarget:number):SetMaxValueACType  => {
 	return {
-		type: 'WW'
+		type: 'SET-MAX-VALUE',
+		maxTarget
 	} as const
 }
