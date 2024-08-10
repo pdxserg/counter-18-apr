@@ -2,11 +2,12 @@ import React, {ChangeEvent, useEffect, useReducer, useState} from 'react';
 import './App.css'
 import {Counter} from "./Counter";
 import {Setting} from "./components/Setting";
-import {incrementAC, valueReducer} from "./models/value-reducer";
+import {incrementAC, setMinValueAC, setNewMinValueAC, valueReducer} from "./models/value-reducer";
 
-export const App = () => {
+export const AppWithReduser = () => {
 	const [showComponent, setShowComponent] = useState("A")
-	 const [value, setValue] = useState(0)
+	const [value, dispatchValue] = useReducer(valueReducer,0)
+	// const [value, setValue] = useState(0)
 	const [maxValue, setMaxValue] = useState(0)
 	const [minValue, setMinValue] = useState(0)
 
@@ -35,12 +36,15 @@ export const App = () => {
 	// }, [minValue]);
 
 
-
 	const incHandler = () => {
-		setValue(value + 1)
+		dispatchValue(incrementAC() )
 	}
+	// const incHandler = () => {
+	// 	setValue(value + 1)
+	// }
 	const resetHandler = () => {
-		 setValue(minValue)
+		dispatchValue(setMinValueAC(minValue))
+		// setValue(minValue)
 	}
 
 	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,9 +55,15 @@ export const App = () => {
 	}
 
 	const setHandler = () => {
-		setValue(minValue)
+		 dispatchValue(setNewMinValueAC(minValue))
 		setShowComponent("A")
 	}
+	// const setHandler = () => {
+	// 	 setValue(minValue)
+	// 	setShowComponent("A")
+	// }
+
+
 	const settingtHandler = () => {
 		setShowComponent("B")
 	}
