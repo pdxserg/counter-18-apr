@@ -1,14 +1,15 @@
-import React, {ChangeEvent, useEffect, useReducer, useState} from 'react';
+import React, {ChangeEvent, useReducer, useState} from 'react';
 import './App.css'
 import {Counter} from "./Counter";
 import {Setting} from "./components/Setting";
 import {incrementAC, setMinValueAC, setNewMinValueAC, valueReducer} from "./models/value-reducer";
-import {maxValueReducer, setMaxValueAC} from "./models/maxValue-reducer";
+import {maxValueReducer, setMaxTargetAC} from "./models/maxValue-reducer";
+import {minValueReducer, setMinTargetAC} from "./models/minValue-reducer";
 
 export const AppWithReduser = () => {
 	const [value, dispatchValue] = useReducer(valueReducer,0)
 	const [maxValue, dispatchMaxValue] = useReducer(maxValueReducer, 0)
-	const [minValue, setMinValue] = useState(0)
+	const [minValue, dispatchMinValue] = useReducer(minValueReducer, 0)
 
 	const [showComponent, setShowComponent] = useState("A")
 
@@ -47,10 +48,11 @@ export const AppWithReduser = () => {
 
 	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
 		const maxTarget = +e.currentTarget.value
-		dispatchMaxValue(setMaxValueAC(maxTarget))
+		dispatchMaxValue(setMaxTargetAC(maxTarget))
 	}
 	const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-		setMinValue(+e.currentTarget.value)
+		const minTarget = +e.currentTarget.value
+		dispatchMinValue(setMinTargetAC(minTarget))
 	}
 
 	const setHandler = () => {
