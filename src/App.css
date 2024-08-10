@@ -47,9 +47,9 @@
 
 }
 .styleRed {
-
+    transform: scale(1.5); /* Увеличиваем текст в 2 раза */
+    display: inline-block; /* Устанавливаем, чтобы текст масштабировался как блок */
     color: red;
-
 }
 
 .button-container {
