@@ -5,11 +5,11 @@ import {Setting} from "./components/Setting";
 import {incrementAC, setMinValueAC, setNewMinValueAC, valueReducer} from "./models/value-reducer";
 
 export const AppWithReduser = () => {
-	const [showComponent, setShowComponent] = useState("A")
 	const [value, dispatchValue] = useReducer(valueReducer,0)
-	// const [value, setValue] = useState(0)
 	const [maxValue, setMaxValue] = useState(0)
 	const [minValue, setMinValue] = useState(0)
+
+	const [showComponent, setShowComponent] = useState("A")
 
 	//!!DONT REMOVE CODE BELOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//       DONT REMOVE CODE BELOW!
@@ -39,12 +39,9 @@ export const AppWithReduser = () => {
 	const incHandler = () => {
 		dispatchValue(incrementAC() )
 	}
-	// const incHandler = () => {
-	// 	setValue(value + 1)
-	// }
+
 	const resetHandler = () => {
 		dispatchValue(setMinValueAC(minValue))
-		// setValue(minValue)
 	}
 
 	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,11 +55,6 @@ export const AppWithReduser = () => {
 		 dispatchValue(setNewMinValueAC(minValue))
 		setShowComponent("A")
 	}
-	// const setHandler = () => {
-	// 	 setValue(minValue)
-	// 	setShowComponent("A")
-	// }
-
 
 	const settingtHandler = () => {
 		setShowComponent("B")
