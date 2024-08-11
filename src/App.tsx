@@ -1,8 +1,9 @@
 import React, {ChangeEvent, useEffect, useReducer, useState} from 'react';
 import './App.css'
-import {Counter} from "./Counter";
+
 import {Setting} from "./components/Setting";
 import {incrementAC, valueReducer} from "./models/value-reducer";
+import {Counter} from "./components/Counter";
 
 export const App = () => {
 	const [showComponent, setShowComponent] = useState("A")

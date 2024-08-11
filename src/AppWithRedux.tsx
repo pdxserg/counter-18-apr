@@ -1,12 +1,10 @@
-import React, {ChangeEvent, useReducer, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css'
-import {Counter} from "./Counter";
-import {Setting} from "./components/Setting";
-import {incrementAC, setMinValueAC, setNewMinValueAC, valueReducer} from "./models/value-reducer";
-import {maxValueReducer, setMaxTargetAC} from "./models/maxValue-reducer";
-import {minValueReducer, setMinTargetAC} from "./models/minValue-reducer";
+import {setNewMinValueAC} from "./models/value-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store/store";
+import {CounterWithRedux} from "./components/CounterWithRedux";
+import {SettingWithRedux} from "./components/SettingWithRedux";
 
 export const AppWithRedux = () => {
 	// const [value, dispatchValue] = useReducer(valueReducer,0)
@@ -15,9 +13,9 @@ export const AppWithRedux = () => {
 
 	const [showComponent, setShowComponent] = useState("A")
 
-	const value = useSelector<AppRootStateType, number>(state => state.value)
-	const maxValue = useSelector<AppRootStateType, number>(state => state.maxValue)
-	const minValue = useSelector<AppRootStateType, number>(state => state.minValue)
+	// const value = useSelector<AppRootStateType, number>(state => state.value)
+	// const maxValueStore = useSelector<AppRootStateType, number>(state => state.maxValueStore)
+	const minValueStore = useSelector<AppRootStateType, number>(state => state.minValueStore)
 
 	const dispatch = useDispatch()
 
@@ -47,25 +45,16 @@ export const AppWithRedux = () => {
 	// }, [minValue]);
 
 
-	const incHandler = () => {
-		dispatch(incrementAC() )
-	}
-
-	const resetHandler = () => {
-		dispatch(setMinValueAC(minValue))
-	}
-
-	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-		const maxTarget = +e.currentTarget.value
-		dispatch(setMaxTargetAC(maxTarget))
-	}
-	const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-		const minTarget = +e.currentTarget.value
-		dispatch (setMinTargetAC(minTarget))
-	}
+	// const incHandler = () => {
+	// 	dispatch(incrementAC() )
+	// }
+	//
+	// const resetHandler = () => {
+	// 	dispatch(setMinValueAC(minValueStore))
+	// }
 
 	const setHandler = () => {
-		dispatch(setNewMinValueAC(minValue))
+		dispatch(setNewMinValueAC(minValueStore))
 		setShowComponent("A")
 	}
 
@@ -79,18 +68,19 @@ export const AppWithRedux = () => {
 
 		<div className="App">
 			{showComponent === 'A'
-				? <Counter value={value}
-				           incHandler={incHandler}
-				           resetHandler={resetHandler}
-				           settingtHandler={settingtHandler}
-				           maxValue={maxValue}
+				? <CounterWithRedux
+					// value={value}
+					// incHandler={incHandler}
+					// resetHandler={resetHandler}
+					settingtHandler={settingtHandler}
+					// maxValue={maxValueStore}
 				/>
 
-				: <Setting
-					changeMaxValue={changeMaxValue}
-					changeMinValue={changeMinValue}
-					maxValue={maxValue}
-					minValue={minValue}
+				: <SettingWithRedux
+					// changeMaxValue={changeMaxValue}
+					// changeMinValue={changeMinValue}
+					// maxValue={maxValueStore}
+					// minValue={minValueStore}
 					setHandler={setHandler}
 
 				/>

@@ -5,8 +5,8 @@ import {minValueReducer} from "../models/minValue-reducer";
 
 const rootReducer = combineReducers({
 	value: valueReducer,
-	maxValue: maxValueReducer,
-	minValue: minValueReducer
+	maxValueStore: maxValueReducer,
+	minValueStore: minValueReducer
 })
 
 export const store = createStore(rootReducer)

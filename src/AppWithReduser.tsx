@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useReducer, useState} from 'react';
 import './App.css'
-import {Counter} from "./Counter";
+import {Counter} from "./components/Counter";
 import {Setting} from "./components/Setting";
 import {incrementAC, setMinValueAC, setNewMinValueAC, valueReducer} from "./models/value-reducer";
 import {maxValueReducer, setMaxTargetAC} from "./models/maxValue-reducer";
