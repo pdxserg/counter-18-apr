@@ -63,6 +63,14 @@ export const AppWithRedux = () => {
 	}
 
 
+	const testFunc = (value: 'A' | 'B') => {
+		if (value === 'A') {
+			dispatch(setNewMinValueAC(minValueStore))
+		}
+		setShowComponent(value)
+	}
+
+
 	return (
 
 
@@ -82,12 +90,8 @@ export const AppWithRedux = () => {
 					// maxValue={maxValueStore}
 					// minValue={minValueStore}
 					setHandler={setHandler}
-
 				/>
 			}
-
-
 		</div>
 	);
 };
-

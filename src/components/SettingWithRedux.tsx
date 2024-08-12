@@ -3,6 +3,7 @@ import {setMaxTargetAC} from "../models/maxValue-reducer";
 import {setMinTargetAC} from "../models/minValue-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
+import styles from './settings.module.css'
 
 type SettingPropsType = {
 	// maxValue: number
@@ -15,6 +16,7 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 
 	const maxValueStore = useSelector<AppRootStateType, number>(state => state.maxValueStore)
 	const minValueStore = useSelector<AppRootStateType, number>(state => state.minValueStore)
+
 	const dispatch = useDispatch()
 	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
 		const maxTarget = +e.currentTarget.value
@@ -24,6 +26,12 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 		const minTarget = +e.currentTarget.value
 		dispatch(setMinTargetAC(minTarget))
 	}
+
+
+	const error = maxValueStore === minValueStore || minValueStore < 0 || maxValueStore < 0 || maxValueStore < minValueStore
+
+	const inputClassName = `${styles.input} ${error ? styles.error : ''}`
+
 	return (
 		<div className="style1">
 			<div>
@@ -31,6 +39,7 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 				<input type="number"
 				       value={maxValueStore}
 				       onChange={changeMaxValue}
+				       className={inputClassName}
 				/>
 			</div>
 			<div>
@@ -44,7 +53,7 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 				<button
 					className="button"
 					onClick={setHandler}
-					disabled={maxValueStore === minValueStore || minValueStore < 0 || maxValueStore < 0 || maxValueStore < minValueStore}
+					disabled={error}
 				>set
 				</button>
 			</div>

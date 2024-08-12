@@ -38,21 +38,23 @@ export const CounterWithRedux = ({ settingtHandler  }: CounterPoropsType) => {
 					<button onClick={incHandler}
 					        disabled={value === maxValueStore}
 					        className="button"
-					>inc
-
+					>
+						inc
 					</button>
 
 					<button onClick={resetHandler}
 					        disabled={value === 0}
 					        className="button"
 
-					>reset
+					>
+						reset
 					</button>
 
 					<button onClick={settingtHandler}
 					        className="button"
 
-					>setting
+					>
+						setting
 					</button>
 				</div>
 			</div>
