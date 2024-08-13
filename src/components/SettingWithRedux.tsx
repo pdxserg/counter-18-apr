@@ -1,18 +1,16 @@
 import React, {ChangeEvent} from 'react';
-import {setMaxTargetAC} from "../models/maxValue-reducer";
-import {setMinTargetAC} from "../models/minValue-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
-import s from './settings.module.css'
 import {ShowComponentType} from "../AppWithRedux";
-import {setNewMinValueAC, StateType} from "../models/value-reducer";
+import {setMaxTargetAC, setMinTargetAC, setNewMinValueAC, StateType} from "../models/counter-reducer";
+import s from "./settings.module.css"
 
 
 type SettingPropsType = {
 	setHandler: (setting: ShowComponentType) => void
 }
 export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
-	const {value, minValue, maxValue} = useSelector<AppRootStateType, StateType>(state => state.counter)
+	const {minValue, maxValue} = useSelector<AppRootStateType, StateType>(state => state.counter)
 
 
 	const dispatch = useDispatch()
@@ -27,32 +25,36 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 	}
 
 
-	// const error = maxValueStore === minValueStore || minValueStore < 0 || maxValueStore < 0 || maxValueStore < minValueStore
+	const error = maxValue === minValue
+	const errorForMin = minValue < 0|| maxValue < minValue
+	const errorForMax = maxValue < 0 || maxValue < minValue
 
-	// const inputClassName = `${s.input} ${error ? s.error : ''}`
+
+	const inputClassName = `${error || errorForMin ? s.error : ''}`
 
 	return (
 		<div className="style1">
-			<div>
-				max value:
+			<div className={inputClassName}>
+				{errorForMax ? <span>vrong value:</span> : <span>max value:</span>}
 				<input type="number"
-				       value={maxValue }
+				       value={maxValue}
 				       onChange={changeMaxValue}
-				       // className={inputClassName}
+				       className={inputClassName}
 				/>
 			</div>
-			<div>
-				min value:
+			<div className={inputClassName}>
+				{errorForMin ? <span>vrong value:</span> : <span>min value:</span>}
 				<input type="number"
-				       value={minValue }
+				       value={minValue}
 				       onChange={changeMinValue}
+				       className={inputClassName}
 				/>
 			</div>
 			<div className="button-container">
 				<button
 					className="button"
-					onClick={()=>{setHandler('SettingOf')}}
-					// disabled={error}
+					onClick={() => {setHandler('SettingOf')}}
+					disabled={error}
 				>set
 				</button>
 			</div>

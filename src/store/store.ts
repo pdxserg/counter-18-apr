@@ -1,12 +1,9 @@
 import {combineReducers, legacy_createStore as createStore} from "redux";
-import {counterReducer} from "../models/value-reducer";
+import {counterReducer} from "../models/counter-reducer";
 
 const rootReducer = combineReducers({
 
 	counter: counterReducer
-	// value: valueReducer,
-	// maxValueStore: maxValueReducer,
-	// minValueStore: minValueReducer
 })
 
 export const store = createStore(rootReducer)

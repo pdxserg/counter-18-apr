@@ -1,5 +1,5 @@
 import React from "react";
-import {incrementAC, setMinValueAC, StateType} from "../models/value-reducer";
+import {incrementAC, setMinValueAC, StateType} from "../models/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
 import {ShowComponentType} from "../AppWithRedux";
