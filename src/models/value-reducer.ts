@@ -1,4 +1,4 @@
-type ActionsType = IncrementACType | SetNewMinValueACType | SetMinValueACType
+type ActionsType = IncrementACType | SetNewMinValueACType | SetMinValueACType|SetNewMinTargetACType|SetMaxTargetACType
 export type StateType = {
 	value: number
 	minValue:number
@@ -6,9 +6,9 @@ export type StateType = {
 }
 
 const initialState: StateType = {
-	value: 1,
-	minValue:1,
-	maxValue:10
+	value: 0,
+	minValue:0,
+	maxValue:5
 }
 export const counterReducer = (state = initialState, action: ActionsType): StateType => {
 	switch (action.type) {
@@ -20,6 +20,12 @@ export const counterReducer = (state = initialState, action: ActionsType): State
 		}
 		case "RESET": {
 			return {...state, value: action.minValue }
+		}
+		case 'SET-MIN-VALUE': {
+			return {...state, minValue: action.minTarget }
+		}
+		case 'SET-MAX-VALUE': {
+			return {...state, maxValue: action.maxTarget }
 		}
 		default: {
 			return state
@@ -55,5 +61,23 @@ export const setMinValueAC = (minValue: number): SetMinValueACType => {
 	return {
 		type: 'RESET',
 		minValue
+	} as const
+}
+// AUTO TYPE!!!
+type SetNewMinTargetACType = ReturnType<typeof setMinTargetAC>
+export const setMinTargetAC  = (minTarget:number)  => {
+	return {
+		type: 'SET-MIN-VALUE',
+		minTarget: minTarget
+	} as const
+}
+type SetMaxTargetACType = {
+	type: 'SET-MAX-VALUE'
+	maxTarget:number
+}
+export const setMaxTargetAC = (maxTarget:number):SetMaxTargetACType  => {
+	return {
+		type: 'SET-MAX-VALUE',
+		maxTarget
 	} as const
 }
