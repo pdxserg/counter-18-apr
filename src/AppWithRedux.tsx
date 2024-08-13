@@ -1,24 +1,13 @@
 import React, {useState} from 'react';
 import './App.css'
-import {setNewMinValueAC} from "./models/value-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./store/store";
 import {CounterWithRedux} from "./components/CounterWithRedux";
 import {SettingWithRedux} from "./components/SettingWithRedux";
 
+
+export type ShowComponentType = "SettingOf" | "SettingOn"
 export const AppWithRedux = () => {
-	// const [value, dispatchValue] = useReducer(valueReducer,0)
-	// const [maxValue, dispatchMaxValue] = useReducer(maxValueReducer, 0)
-	// const [minValue, dispatchMinValue] = useReducer(minValueReducer, 0)
 
-	const [showComponent, setShowComponent] = useState("A")
-
-	// const value = useSelector<AppRootStateType, number>(state => state.value)
-	// const maxValueStore = useSelector<AppRootStateType, number>(state => state.maxValueStore)
-	const minValueStore = useSelector<AppRootStateType, number>(state => state.minValueStore)
-
-	const dispatch = useDispatch()
-
+	const [showComponent, setShowComponent] = useState<ShowComponentType>("SettingOf")
 
 	//!!DONT REMOVE CODE BELOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//       DONT REMOVE CODE BELOW!
@@ -45,50 +34,21 @@ export const AppWithRedux = () => {
 	// }, [minValue]);
 
 
-	// const incHandler = () => {
-	// 	dispatch(incrementAC() )
-	// }
-	//
-	// const resetHandler = () => {
-	// 	dispatch(setMinValueAC(minValueStore))
-	// }
-
-	const setHandler = () => {
-		dispatch(setNewMinValueAC(minValueStore))
-		setShowComponent("A")
-	}
-
-	const settingtHandler = () => {
-		setShowComponent("B")
-	}
-
-
-	const testFunc = (value: 'A' | 'B') => {
-		if (value === 'A') {
-			dispatch(setNewMinValueAC(minValueStore))
+	const setHandler = (setting: ShowComponentType) => {
+		if (showComponent === "SettingOf") {
+			setShowComponent(setting)
 		}
-		setShowComponent(value)
+		setShowComponent(setting)
 	}
-
 
 	return (
-
-
 		<div className="App">
-			{showComponent === 'A'
+			{showComponent === 'SettingOf'
 				? <CounterWithRedux
-					// value={value}
-					// incHandler={incHandler}
-					// resetHandler={resetHandler}
-					settingtHandler={settingtHandler}
-					// maxValue={maxValueStore}
+					setHandler={setHandler}
 				/>
 
 				: <SettingWithRedux
-					// changeMaxValue={changeMaxValue}
-					// changeMinValue={changeMinValue}
-					// maxValue={maxValueStore}
-					// minValue={minValueStore}
 					setHandler={setHandler}
 				/>
 			}

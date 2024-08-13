@@ -2,15 +2,15 @@ import React from "react";
 import {incrementAC, setMinValueAC} from "../models/value-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
+import {ShowComponentType} from "../AppWithRedux";
 
 
 type CounterPoropsType = {
-	// maxValue: number
-	settingtHandler:()=>void
+	setHandler: (setting: ShowComponentType) => void
 }
 
 
-export const CounterWithRedux = ({ settingtHandler  }: CounterPoropsType) => {
+export const CounterWithRedux = ({ setHandler  }: CounterPoropsType) => {
 	const value = useSelector<AppRootStateType, number>(state => state.value)
 	const maxValueStore = useSelector<AppRootStateType, number>(state => state.maxValueStore)
 	const minValueStore = useSelector<AppRootStateType, number>(state => state.minValueStore)
@@ -19,11 +19,10 @@ export const CounterWithRedux = ({ settingtHandler  }: CounterPoropsType) => {
 	const incHandler = () => {
 		dispatch(incrementAC() )
 	}
-
 	const resetHandler = () => {
 		dispatch(setMinValueAC(minValueStore))
 	}
-	console.log("counter")
+
 	return (
 		<div>
 			<div className="style1">
@@ -45,14 +44,12 @@ export const CounterWithRedux = ({ settingtHandler  }: CounterPoropsType) => {
 					<button onClick={resetHandler}
 					        disabled={value === 0}
 					        className="button"
-
 					>
 						reset
 					</button>
 
-					<button onClick={settingtHandler}
+					<button onClick={()=>{setHandler("SettingOn")}}
 					        className="button"
-
 					>
 						setting
 					</button>

@@ -1,32 +1,25 @@
-
-
 type ActionsType = IncrementACType | SetNewMinValueACType | SetMinValueACType
 type StateType = number
-const initialState: StateType= 0
+const initialState: StateType = 0
 export const valueReducer = (state = initialState, action: ActionsType): StateType => {
 	switch (action.type) {
 		case "INCREASE": {
-			const copyState = state
-
-			return copyState + 1
+			return state + 1
 		}
 		case "NEW-MIN-VALUE": {
 			let copyState = state
 			copyState = action.minValue
 			return copyState
 		}
-
-		case "RESET":{
+		case "RESET": {
 			let copyState = state
 			copyState = action.minValue
 			return copyState
 		}
-
 		default: {
 			return state
 		}
 	}
-
 }
 
 type IncrementACType = {
@@ -53,7 +46,7 @@ type SetMinValueACType = {
 	type: 'RESET',
 	minValue: number
 }
-export const setMinValueAC = (minValue: number) => {
+export const setMinValueAC = (minValue: number): SetMinValueACType => {
 	return {
 		type: 'RESET',
 		minValue

@@ -18,12 +18,6 @@ export const minValueReducer = (state=initialState, action: ActionsType): StateT
 	}
 }
 
-
-// type SetNewMinTargetACType = {
-// 	type: 'SET-MIN-VALUE'
-// 	minTarget:number
-// }
-
 // AUTO TYPE!!!
 type SetNewMinTargetACType = ReturnType<typeof setMinTargetAC>
 
