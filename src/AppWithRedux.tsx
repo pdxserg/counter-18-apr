@@ -9,31 +9,6 @@ export const AppWithRedux = () => {
 
 	const [showComponent, setShowComponent] = useState<ShowComponentType>("SettingOf")
 
-	//!!DONT REMOVE CODE BELOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//       DONT REMOVE CODE BELOW!
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// useEffect(() => {
-	// 	let maxValue = localStorage.getItem("maxValue")
-	// 	let minValue = localStorage.getItem("minValue")
-	// 	if (maxValue) {
-	// 		let newMaxVal = JSON.parse(maxValue)
-	// 		setMaxDown(newMaxVal)
-	// 	}
-	// 	if (minValue) {
-	// 		let newMinVal = JSON.parse(minValue)
-	// 		setMinDown(newMinVal)
-	// 	}
-	//
-	// }, []);
-	// useEffect(() => {
-	// 	localStorage.setItem("maxValue", JSON.stringify(maxValue))
-	// 	// localStorage.setItem("minValue", JSON.stringify(minValue))
-	// }, [maxValue]);
-	// useEffect(() => {
-	// 	localStorage.setItem("minValue", JSON.stringify(minValue))
-	// }, [minValue]);
-
-
 	const setHandler = (setting: ShowComponentType) => {
 		if (showComponent === "SettingOf") {
 			setShowComponent(setting)
@@ -55,3 +30,36 @@ export const AppWithRedux = () => {
 		</div>
 	);
 };
+
+
+
+
+
+
+
+
+
+
+//!!DONT REMOVE CODE BELOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//       DONT REMOVE CODE BELOW!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// useEffect(() => {
+// 	let maxValue = localStorage.getItem("maxValue")
+// 	let minValue = localStorage.getItem("minValue")
+// 	if (maxValue) {
+// 		let newMaxVal = JSON.parse(maxValue)
+// 		setMaxDown(newMaxVal)
+// 	}
+// 	if (minValue) {
+// 		let newMinVal = JSON.parse(minValue)
+// 		setMinDown(newMinVal)
+// 	}
+//
+// }, []);
+// useEffect(() => {
+// 	localStorage.setItem("maxValue", JSON.stringify(maxValue))
+// 	// localStorage.setItem("minValue", JSON.stringify(minValue))
+// }, [maxValue]);
+// useEffect(() => {
+// 	localStorage.setItem("minValue", JSON.stringify(minValue))
+// }, [minValue]);

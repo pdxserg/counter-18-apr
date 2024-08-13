@@ -1,5 +1,5 @@
 import React from "react";
-import {incrementAC, setMinValueAC} from "../models/value-reducer";
+import {incrementAC, setMinValueAC, StateType} from "../models/value-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
 import {ShowComponentType} from "../AppWithRedux";
@@ -10,24 +10,23 @@ type CounterPoropsType = {
 }
 
 
-export const CounterWithRedux = ({ setHandler  }: CounterPoropsType) => {
-	const value = useSelector<AppRootStateType, number>(state => state.value)
-	const maxValueStore = useSelector<AppRootStateType, number>(state => state.maxValueStore)
-	const minValueStore = useSelector<AppRootStateType, number>(state => state.minValueStore)
+export const CounterWithRedux = ({setHandler}: CounterPoropsType) => {
+	const {value, minValue, maxValue} = useSelector<AppRootStateType, StateType>(state => state.counter)
+
 
 	const dispatch = useDispatch()
 	const incHandler = () => {
-		dispatch(incrementAC() )
+		dispatch(incrementAC())
 	}
 	const resetHandler = () => {
-		dispatch(setMinValueAC(minValueStore))
+		dispatch(setMinValueAC(minValue))
 	}
 
 	return (
 		<div>
 			<div className="style1">
-				<div >
-					<h1 className={value === maxValueStore ? "styleRed" : ""}>
+				<div>
+					<h1 className={value === maxValue ? "styleRed" : ""}>
 						{value}
 					</h1>
 				</div>
@@ -35,7 +34,7 @@ export const CounterWithRedux = ({ setHandler  }: CounterPoropsType) => {
 				<div className="button-container">
 
 					<button onClick={incHandler}
-					        disabled={value === maxValueStore}
+					        disabled={value === maxValue}
 					        className="button"
 					>
 						inc
@@ -48,7 +47,9 @@ export const CounterWithRedux = ({ setHandler  }: CounterPoropsType) => {
 						reset
 					</button>
 
-					<button onClick={()=>{setHandler("SettingOn")}}
+					<button onClick={() => {
+						setHandler("SettingOn")
+					}}
 					        className="button"
 					>
 						setting
@@ -56,5 +57,6 @@ export const CounterWithRedux = ({ setHandler  }: CounterPoropsType) => {
 				</div>
 			</div>
 		</div>
+
 	)
 }

@@ -5,16 +5,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
 import s from './settings.module.css'
 import {ShowComponentType} from "../AppWithRedux";
-import {setNewMinValueAC} from "../models/value-reducer";
+import {setNewMinValueAC, StateType} from "../models/value-reducer";
 
 
 type SettingPropsType = {
 	setHandler: (setting: ShowComponentType) => void
 }
 export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
+	const {value, minValue, maxValue} = useSelector<AppRootStateType, StateType>(state => state.counter)
 
-	const maxValueStore = useSelector<AppRootStateType, number>(state => state.maxValueStore)
-	const minValueStore = useSelector<AppRootStateType, number>(state => state.minValueStore)
 
 	const dispatch = useDispatch()
 	const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,24 +27,24 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 	}
 
 
-	const error = maxValueStore === minValueStore || minValueStore < 0 || maxValueStore < 0 || maxValueStore < minValueStore
+	// const error = maxValueStore === minValueStore || minValueStore < 0 || maxValueStore < 0 || maxValueStore < minValueStore
 
-	const inputClassName = `${s.input} ${error ? s.error : ''}`
+	// const inputClassName = `${s.input} ${error ? s.error : ''}`
 
 	return (
 		<div className="style1">
 			<div>
 				max value:
 				<input type="number"
-				       value={maxValueStore}
+				       value={maxValue }
 				       onChange={changeMaxValue}
-				       className={inputClassName}
+				       // className={inputClassName}
 				/>
 			</div>
 			<div>
 				min value:
 				<input type="number"
-				       value={minValueStore}
+				       value={minValue }
 				       onChange={changeMinValue}
 				/>
 			</div>
@@ -53,7 +52,7 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 				<button
 					className="button"
 					onClick={()=>{setHandler('SettingOf')}}
-					disabled={error}
+					// disabled={error}
 				>set
 				</button>
 			</div>
