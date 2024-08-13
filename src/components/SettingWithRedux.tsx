@@ -4,6 +4,7 @@ import {AppRootStateType} from "../store/store";
 import {ShowComponentType} from "../AppWithRedux";
 import {setMaxTargetAC, setMinTargetAC, setNewMinValueAC, StateType} from "../models/counter-reducer";
 import s from "./settings.module.css"
+import Button from "./Button";
 
 
 type SettingPropsType = {
@@ -25,17 +26,16 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 	}
 
 
-	const error = maxValue === minValue
-	const errorForMin = minValue < 0|| maxValue < minValue
-	const errorForMax = maxValue < 0 || maxValue < minValue
+	const error = maxValue === minValue ||minValue < 0||maxValue < 0 || maxValue < minValue
 
 
-	const inputClassName = `${error || errorForMin ? s.error : ''}`
+
+	const inputClassName = `${error  ? s.error : ''}`
 
 	return (
 		<div className="style1">
 			<div className={inputClassName}>
-				{errorForMax ? <span>vrong value:</span> : <span>max value:</span>}
+				{error ? <span>vrong value:</span> : <span>max value:</span>}
 				<input type="number"
 				       value={maxValue}
 				       onChange={changeMaxValue}
@@ -43,7 +43,7 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 				/>
 			</div>
 			<div className={inputClassName}>
-				{errorForMin ? <span>vrong value:</span> : <span>min value:</span>}
+				{error? <span>vrong value:</span> : <span>min value:</span>}
 				<input type="number"
 				       value={minValue}
 				       onChange={changeMinValue}
@@ -51,12 +51,12 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 				/>
 			</div>
 			<div className="button-container">
-				<button
+				<Button
+					title={"set"}
 					className="button"
 					onClick={() => {setHandler('SettingOf')}}
 					disabled={error}
-				>set
-				</button>
+				/>
 			</div>
 
 		</div>
