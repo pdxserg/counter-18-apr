@@ -12,7 +12,9 @@ type CounterPoropsType = {
 
 
 export const CounterWithRedux = ({setHandler}: CounterPoropsType) => {
-	const {value, minValue, maxValue} = useSelector<AppRootStateType, StateType>(state => state.counter)
+	const value = useSelector<AppRootStateType, number>(state => state.counter.value)
+	const minValue = useSelector<AppRootStateType, number>(state => state.counter.minValue)
+	const maxValue = useSelector<AppRootStateType, number>(state => state.counter.maxValue)
 
 
 	const dispatch = useDispatch()
@@ -24,8 +26,7 @@ export const CounterWithRedux = ({setHandler}: CounterPoropsType) => {
 	}
 
 	return (
-		<div>
-			<div className="style1">
+			<div className="container">
 				<div>
 					<h1 className={value === maxValue ? "styleRed" : ""}>
 						{value}
@@ -48,12 +49,12 @@ export const CounterWithRedux = ({setHandler}: CounterPoropsType) => {
 					<Button
 						title={"setting"}
 						className="button"
-						onClick={() => {setHandler("SettingOn")}}
+						onClick={() => {
+							setHandler("SettingOn")
+						}}
 					/>
 
 				</div>
 			</div>
-		</div>
-
 	)
 }

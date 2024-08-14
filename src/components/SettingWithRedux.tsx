@@ -11,7 +11,8 @@ type SettingPropsType = {
 	setHandler: (setting: ShowComponentType) => void
 }
 export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
-	const {minValue, maxValue} = useSelector<AppRootStateType, StateType>(state => state.counter)
+	const minValue = useSelector<AppRootStateType, number>(state => state.counter.minValue)
+	const maxValue = useSelector<AppRootStateType, number>(state => state.counter.maxValue)
 
 
 	const dispatch = useDispatch()
@@ -26,16 +27,15 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 	}
 
 
-	const error = maxValue === minValue ||minValue < 0||maxValue < 0 || maxValue < minValue
-
+	const error = maxValue <= minValue ||minValue < 0||maxValue < 0
 
 
 	const inputClassName = `${error  ? s.error : ''}`
 
 	return (
-		<div className="style1">
+		<div className="container">
 			<div className={inputClassName}>
-				{error ? <span>vrong value:</span> : <span>max value:</span>}
+				{error ? <span>Wrong value:</span> : <span>max value:</span>}
 				<input type="number"
 				       value={maxValue}
 				       onChange={changeMaxValue}
@@ -43,7 +43,7 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 				/>
 			</div>
 			<div className={inputClassName}>
-				{error? <span>vrong value:</span> : <span>min value:</span>}
+				{error? <span>Wrong value:</span> : <span>min value:</span>}
 				<input type="number"
 				       value={minValue}
 				       onChange={changeMinValue}
