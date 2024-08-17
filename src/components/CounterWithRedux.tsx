@@ -1,5 +1,5 @@
 import React from "react";
-import {incrementAC, setMinValueAC, StateType} from "../models/counter-reducer";
+import {incrementAC, setInitialValueAC} from "../models/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
 import {ShowComponentType} from "../AppWithRedux";
@@ -18,17 +18,19 @@ export const CounterWithRedux = ({setHandler}: CounterPoropsType) => {
 
 
 	const dispatch = useDispatch()
-	const incHandler = () => {
+	const incrementHandler = () => {
 		dispatch(incrementAC())
 	}
 	const resetHandler = () => {
-		dispatch(setMinValueAC(minValue))
+		dispatch(setInitialValueAC(minValue))
 	}
+
+	const redNumber = value === maxValue ? "styleRed" : ""
 
 	return (
 			<div className="container">
 				<div>
-					<h1 className={value === maxValue ? "styleRed" : ""}>
+					<h1 className={redNumber}>
 						{value}
 					</h1>
 				</div>
@@ -37,14 +39,14 @@ export const CounterWithRedux = ({setHandler}: CounterPoropsType) => {
 					<Button
 						title={"inc"}
 						className="button"
-						onClick={incHandler}
+						onClick={incrementHandler}
 						disabled={value === maxValue}
 					/>
 					<Button
 						title={"reset"}
 						className="button"
 						onClick={resetHandler}
-						disabled={value === 0}
+						disabled={value === minValue}
 					/>
 					<Button
 						title={"setting"}

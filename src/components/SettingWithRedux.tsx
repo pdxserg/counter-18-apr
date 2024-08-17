@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../store/store";
 import {ShowComponentType} from "../AppWithRedux";
-import {setMaxTargetAC, setMinTargetAC, setNewMinValueAC, StateType} from "../models/counter-reducer";
+import {setInitialValueAC, setMaxTargetAC, setMinTargetAC,} from "../models/counter-reducer";
 import s from "./settings.module.css"
 import Button from "./Button";
 
@@ -23,8 +23,9 @@ export const SettingWithRedux = ({setHandler}: SettingPropsType) => {
 	const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
 		const minTarget = +e.currentTarget.value
 		dispatch(setMinTargetAC(minTarget))
-		dispatch(setNewMinValueAC(minTarget))
+		dispatch(setInitialValueAC(minTarget))
 	}
+
 
 
 	const error = maxValue <= minValue ||minValue < 0||maxValue < 0
